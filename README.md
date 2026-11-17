@@ -1,6 +1,6 @@
 # QLSV
 
-A 9:16 Vietnamese student dashboard built with HTML, CSS and JavaScript. Open `index.html` or serve this directory with `python3 -m http.server 8000`. For home-screen installation, open the app over HTTPS and use your browser’s Add to Home Screen action.
+A full-screen Vietnamese student dashboard built with HTML, CSS and JavaScript. Open `index.html` or serve this directory with `python3 -m http.server 8000`. For home-screen installation, open the app over HTTPS and use your browser’s Add to Home Screen action.
 
 Tap the QR code to open the profile. Tap a value to edit it, or tap the portrait to select a photo. The dashboard and profile share student details. Measurements save as you type. Tap the contact name or number on the dashboard to edit the contact.
 

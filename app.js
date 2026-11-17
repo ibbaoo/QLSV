@@ -90,6 +90,7 @@ function renderRoute() {
   const previous = page;
   page = Object.hasOwn(titles,key) ? key : 'home';
   const away = page !== 'home';
+  document.querySelector('meta[name="theme-color"]').content = away ? '#ffffff' : '#f2f2f2';
   $('phone').classList.toggle('open', away);
   $('home').inert = away;
   $('details').inert = !away;
@@ -204,6 +205,10 @@ function renderMessages() {
     bubble.className = 'bubble';
     bubble.title = 'Giữ 5 giây để chỉnh sửa';
     bubble.dataset.index = index;
+    const sample = document.createElement('span');
+    sample.className = 'sample';
+    sample.textContent = 'Mẫu';
+    bubble.append(sample);
     for (const part of ['stamp','body']) {
       const span = document.createElement('span');
       span.className = part;
