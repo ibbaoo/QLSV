@@ -10,7 +10,7 @@ img{display:block}
 [hidden]{display:none!important}
 #phone{width:100vw;height:100vh;height:100dvh;position:relative;overflow:hidden;background:var(--chrome-color)}
 .screen{position:absolute;inset:0;transition:transform .32s cubic-bezier(.28,.7,.24,1);overflow:hidden}
-.home{overflow-y:auto;background:#e6e6e6;padding:17.5cqw 1.14cqw 0}
+.home{overflow-y:auto;background:#e6e6e6;padding:8cqw 1.14cqw 0}
 .dashboard{min-height:100%;border-radius:4.55cqw 4.55cqw 0 0;background:#2485ca;display:flex;flex-direction:column;align-items:center;color:white}
 .topbar{width:min(100%,97.72cqw);display:grid;grid-template-columns:16.7cqw 17.8cqw 21.55cqw 1fr auto;align-items:center;padding:2.55cqw 8.8cqw 1.45cqw 5cqw;font-size:2.8cqw;line-height:1;white-space:nowrap}
 .topbar span{display:flex;align-items:center;gap:.25cqw}
