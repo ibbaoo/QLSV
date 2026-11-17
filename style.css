@@ -1,22 +1,22 @@
-:root{font-family:Roboto,"Helvetica Neue",Arial,sans-serif;color:#101010;background:#2385cb;font-synthesis:none}
+:root{--chrome-color:#e6e6e6;--ui-scale:.9;color-scheme:light;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;color:#101010;background:var(--chrome-color);font-synthesis:none}
 *{box-sizing:border-box}
 /* Scale the artwork to a phone column while letting each screen paint the full viewport. */
-body{margin:0;width:100%;container-type:inline-size}
-@media (orientation:landscape){body{width:min(100%,56.25dvh)}}
+body{margin:0;width:calc(100% * var(--ui-scale));container-type:inline-size;background:var(--chrome-color)}
+@media (orientation:landscape){body{width:calc(min(100vw,56.25dvh) * var(--ui-scale))}}
 button,input,textarea{font:inherit;color:inherit}
 button{appearance:none;border:0;background:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #194485;outline-offset:2px}
 img{display:block}
 [hidden]{display:none!important}
-#phone{width:100vw;height:100vh;height:100dvh;position:relative;overflow:hidden;background:#2485ca}
+#phone{width:100vw;height:100vh;height:100dvh;position:relative;overflow:hidden;background:var(--chrome-color)}
 .screen{position:absolute;inset:0;transition:transform .32s cubic-bezier(.28,.7,.24,1);overflow:hidden}
-.home{overflow-y:auto;background:linear-gradient(#f2f2f2 0 2.27cqw,#e6e6e6 2.27cqw);padding:17.5cqw 1.14cqw 0}
+.home{overflow-y:auto;background:#e6e6e6;padding:17.5cqw 1.14cqw 0}
 .dashboard{min-height:100%;border-radius:4.55cqw 4.55cqw 0 0;background:#2485ca;display:flex;flex-direction:column;align-items:center;color:white}
 .topbar{width:min(100%,97.72cqw);display:grid;grid-template-columns:16.7cqw 17.8cqw 21.55cqw 1fr auto;align-items:center;padding:2.55cqw 8.8cqw 1.45cqw 5cqw;font-size:2.8cqw;line-height:1;white-space:nowrap}
 .topbar span{display:flex;align-items:center;gap:.25cqw}
 .topbar img{width:3.95cqw;height:4.15cqw;object-fit:contain}
 .topbar button{justify-self:end}
-.qr{background:white;border-radius:2.3cqw;width:52.1cqw;aspect-ratio:1;padding:4.55cqw;flex:none}
+.qr{background:white;border-radius:2.3cqw;width:52.1cqw;height:52.1cqw;padding:4.55cqw;flex:none}
 .qr img{width:100%;height:100%}
 .identity{text-align:center;padding:.8cqw 1cqw .45cqw;max-width:100%;overflow-wrap:anywhere}
 .identity strong,.identity span{display:block;line-height:1.18}
@@ -64,7 +64,7 @@ header i{width:3.3cqw;height:3.3cqw;border-bottom:.6cqw solid #479fe6;border-lef
 .bubble .body{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font-size:4.43cqw;line-height:1.24;letter-spacing:-.045cqw}
 .bubble .sample{float:left;font-size:2.5cqw;line-height:1.7;color:#245a42}
 #create{margin-top:auto;font-size:3.55cqw;background:white;border:1px solid #202020;border-radius:1.15cqw;padding:0 2.3cqw;min-height:9.1cqw;width:17.8cqw;padding-inline:0}
-dialog{max-width:min(92vw,430px);width:100%;max-height:85dvh;border:0;border-radius:14px;padding:20px;color:#152334;box-shadow:0 12px 60px #0003}
+dialog{transform:scale(var(--ui-scale));max-width:min(92vw,430px);width:100%;max-height:85dvh;border:0;border-radius:14px;padding:20px;color:#152334;box-shadow:0 12px 60px #0003}
 dialog::backdrop{background:#10223875}
 dialog h2{font-size:20px;margin:0 0 16px}
 dialog label{display:block;font-size:14px;margin:10px 0}
@@ -74,6 +74,6 @@ dialog textarea{resize:vertical}
 .actions button{padding:8px 18px;border-radius:7px;background:#edf1f4}
 .actions #deleteMessage{margin-right:auto;color:#a31c20;background:#fff0f0}
 .actions .primary{background:#1978b8;color:white}
-#status{position:fixed;bottom:2%;left:50%;transform:translateX(-50%);background:#102d43;color:white;font-size:14px;border-radius:8px;white-space:normal;max-width:90vw;text-align:center}
+#status{position:fixed;bottom:2%;left:50%;transform:translateX(-50%) scale(var(--ui-scale));background:#102d43;color:white;font-size:14px;border-radius:8px;white-space:normal;max-width:90vw;text-align:center}
 #status:not(:empty){padding:8px 14px}
 @media(prefers-reduced-motion:reduce){.screen{transition:none}}

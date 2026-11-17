@@ -90,7 +90,9 @@ function renderRoute() {
   const previous = page;
   page = Object.hasOwn(titles,key) ? key : 'home';
   const away = page !== 'home';
-  document.querySelector('meta[name="theme-color"]').content = away ? '#ffffff' : '#f2f2f2';
+  const chromeColor = away ? '#ffffff' : '#e6e6e6';
+  document.documentElement.style.setProperty('--chrome-color', chromeColor);
+  document.querySelector('meta[name="theme-color"]').content = chromeColor;
   $('phone').classList.toggle('open', away);
   $('home').inert = away;
   $('details').inert = !away;
