@@ -59,7 +59,7 @@ header i{width:3.3cqw;height:3.3cqw;border-bottom:.6cqw solid #479fe6;border-lef
 .notice p{margin:0;font-size:3.25cqw;color:#170965}
 #gate{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:2.27cqw 2.27cqw max(9.85cqw,env(safe-area-inset-bottom))}
 #messages{width:min(100%,95.46cqw);display:grid;gap:2cqw}
-.bubble{width:100%;text-align:left;background:#62f3ae;color:#050e09;border-radius:2.2cqw;padding:2.25cqw 2.35cqw 2.45cqw;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.bubble{width:100%;text-align:left;background:#62f3ae;color:#050e09;border-radius:2.2cqw;padding:2.25cqw 2.35cqw 2.45cqw;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;touch-action:manipulation}
 .bubble .stamp{display:block;text-align:right;font-size:3.55cqw;line-height:1.2;margin-bottom:.45cqw}
 .bubble .body{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font-size:4.43cqw;line-height:1.24;letter-spacing:-.045cqw}
 .bubble .sample{float:left;font-size:2.5cqw;line-height:1.7;color:#245a42}
@@ -70,8 +70,9 @@ dialog h2{font-size:20px;margin:0 0 16px}
 dialog label{display:block;font-size:14px;margin:10px 0}
 dialog input,dialog textarea{width:100%;font-size:16px;margin-top:5px;padding:9px 10px;border:1px solid #9badb9;border-radius:6px;max-height:42dvh}
 dialog textarea{resize:vertical}
-.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:16px}
 .actions button{padding:8px 18px;border-radius:7px;background:#edf1f4}
+.actions #deleteMessage{margin-right:auto;color:#a31c20;background:#fff0f0}
 .actions .primary{background:#1978b8;color:white}
 #status{position:fixed;bottom:2%;left:50%;transform:translateX(-50%);background:#102d43;color:white;font-size:14px;border-radius:8px;white-space:normal;max-width:90vw;text-align:center}
 #status:not(:empty){padding:8px 14px}

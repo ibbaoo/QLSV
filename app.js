@@ -41,9 +41,9 @@ function load() {
     profile[key] = typeof saved.profile?.[key] === 'string' ? saved.profile[key] : fallback;
   }
   const messages = Array.isArray(saved.messages) ? saved.messages.filter(
-    m => typeof m?.stamp === 'string' && typeof m?.body === 'string') : [];
+    m => typeof m?.stamp === 'string' && typeof m?.body === 'string') : [initialMessage];
   const photo = typeof saved.photo === 'string' && saved.photo.startsWith('data:image/jpeg;base64,') ? saved.photo : '';
-  return {profile, messages: messages.length ? messages : [initialMessage], photo};
+  return {profile, messages, photo};
 }
 let state = load();
 function save(next) {
@@ -85,7 +85,7 @@ function renderProfile() {
 const titles = {profile:'Hồ sơ cá nhân', absence:'Quản lý học tập', gate:'Đơn ra vào cổng'};
 let page = 'home';
 function renderRoute() {
-  cancelHold();
+  lastTap = null;
   const key = location.hash.slice(1);
   const previous = page;
   page = Object.hasOwn(titles,key) ? key : 'home';
@@ -116,6 +116,8 @@ window.addEventListener('hashchange',renderRoute);
 
 let submitEdit;
 function openEditor(title, specs, submit) {
+  $('deleteMessage').hidden = true;
+  $('deleteMessage').onclick = null;
   $('editTitle').textContent = title;
   $('editFields').replaceChildren();
   for (const spec of specs) {
@@ -192,18 +194,33 @@ function editMessage(index) {
     renderMessages();
     return true;
   });
+  if (existing) {
+    const remove = $('deleteMessage');
+    remove.hidden = false;
+    remove.textContent = 'Xóa đơn';
+    let confirming = false;
+    remove.onclick = () => {
+      if (!confirming) {
+        confirming = true;
+        remove.textContent = 'Xác nhận xóa';
+        return;
+      }
+      const messages = state.messages.filter((_, i) => i !== index);
+      if (!save({...state,messages})) return;
+      $('editor').close();
+      renderMessages();
+      $('create').focus({preventScroll:true});
+      notify('Đã xóa đơn');
+    };
+  }
 }
-let hold = null;
-function cancelHold() {
-  if (hold) clearTimeout(hold.timer);
-  hold = null;
-}
+let lastTap = null;
 function renderMessages() {
   $('messages').replaceChildren();
   state.messages.forEach((m,index) => {
     const bubble = document.createElement('button');
     bubble.className = 'bubble';
-    bubble.title = 'Giữ 5 giây để chỉnh sửa';
+    bubble.title = 'Chạm hai lần để chỉnh sửa';
     bubble.dataset.index = index;
     const sample = document.createElement('span');
     sample.className = 'sample';
@@ -215,25 +232,20 @@ function renderMessages() {
       span.textContent = m[part];
       bubble.append(span);
     }
-    bubble.oncontextmenu = e => e.preventDefault();
-    bubble.onpointerdown = event => {
-      cancelHold();
-      if (!event.isPrimary || event.button !== 0) return;
-      bubble.setPointerCapture(event.pointerId);
-      hold = {pointer:event.pointerId,x:event.clientX,y:event.clientY,timer:setTimeout(() => {
-        cancelHold(); editMessage(index);
-      },5000)};
+    bubble.onclick = event => {
+      const now = performance.now();
+      const doubleTap = lastTap?.bubble === bubble && now - lastTap.time <= 450
+        && Math.hypot(event.clientX - lastTap.x, event.clientY - lastTap.y) <= 32;
+      if (event.detail === 0 || doubleTap) {
+        lastTap = null;
+        editMessage(index);
+      } else {
+        lastTap = {bubble, time: now, x: event.clientX, y: event.clientY};
+      }
     };
-    bubble.onpointermove = e => {
-      if (hold?.pointer === e.pointerId && Math.hypot(e.clientX-hold.x,e.clientY-hold.y)>10) cancelHold();
-    };
-    bubble.onpointerup = bubble.onpointercancel = bubble.onlostpointercapture = cancelHold;
-    bubble.onclick = event => { if (event.detail === 0 && !$('editor').open) editMessage(index); };
     $('messages').append(bubble);
   });
 }
-window.addEventListener('blur',cancelHold);
-document.addEventListener('visibilitychange',cancelHold);
 $('create').onclick = () => editMessage(state.messages.length);
 renderProfile();
 renderMessages();
