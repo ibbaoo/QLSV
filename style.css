@@ -58,8 +58,8 @@ header i{width:3.3cqw;height:3.3cqw;border-bottom:.6cqw solid #479fe6;border-lef
 .notice h2{font-size:5.1cqw;text-align:center;margin:0 3cqw .4cqw 0}
 .notice p{margin:0;font-size:3.25cqw;color:#170965}
 #gate{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:2.27cqw 3px max(9.85cqw,env(safe-area-inset-bottom))}
-#messages{width:min(100%,calc(90% + 22px));container-type:inline-size;display:grid;gap:2cqw}
-@media (orientation:landscape){#messages{max-width:calc(50.625dvh + 22px)}}
+#messages{width:min(100%,calc(90% + 26px));container-type:inline-size;display:grid;gap:2cqw}
+@media (orientation:landscape){#messages{max-width:calc(50.625dvh + 26px)}}
 .bubble{width:100%;text-align:left;background:#63f4af;color:#050e09;border-radius:2.38cqw;padding:3cqw 2.8cqw 3.2cqw;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none;touch-action:manipulation}
 .bubble .stamp{display:block;text-align:right;font-size:4.1cqw;line-height:1.2;margin-bottom:.45cqw}
 .bubble .body{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font-size:5.2cqw;line-height:1.25;letter-spacing:-.045cqw}
