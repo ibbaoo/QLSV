@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#2385cb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="QLSV">
+  <title>QLSV</title>
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+<main id="phone">
+  <section id="home" class="screen home" aria-label="Trang chủ">
+    <div class="dashboard">
+      <div class="topbar">
+        <span><img src="assets/map.png" alt="">Sơ đồ</span>
+        <span><img src="assets/menu.png" alt="">Thực đơn</span>
+        <span><img src="assets/activities.png" alt="">Ngoại khóa</span>
+        <span><img src="assets/questions.png" alt="">Câu hỏi</span>
+        <button data-page="profile" aria-label="Thông tin cá nhân"><img src="assets/info.png" alt=""></button>
+      </div>
+      <button class="qr" data-page="profile" aria-label="Mở hồ sơ cá nhân"><img src="assets/qr.svg" alt="Mã QR sinh viên"></button>
+      <div class="identity"><strong data-value="name"></strong><span data-value="birth"></span></div>
+      <div class="contact">
+        <strong data-value="company"></strong>
+        <button data-edit="leader"><img src="assets/leader.png" alt=""><span data-value="leader"></span></button>
+        <button data-edit="leaderPhone"><img src="assets/phone.png" alt=""><span data-value="leaderPhone"></span></button>
+      </div>
+      <div class="tiles">
+        <button data-page="absence"><img src="assets/absence.png" alt=""><span>Vắng học</span></button>
+        <div><img src="assets/health.png" alt=""><span>Y tế</span></div>
+        <button data-page="profile" data-measurements><img src="assets/uniform.png" alt=""><span>Quân trang</span></button>
+        <button data-page="gate"><img src="assets/gate.png" alt=""><span>Đơn ra vào cổng</span></button>
+        <div class="room"><img src="assets/room.png" alt=""><span>DS SV Phòng</span></div>
+      </div>
+    </div>
+  </section>
+  <section id="details" class="screen details" inert aria-label="Chi tiết">
+    <header><button id="back"><i aria-hidden="true"></i>Home</button><h1 id="title"></h1></header>
+    <div class="scroll" id="scroll">
+      <section id="profile" hidden aria-label="Hồ sơ cá nhân">
+        <div class="hero">
+          <button id="portraitButton" aria-label="Đổi ảnh đại diện"><img id="portrait" src="assets/portrait.png" alt="Ảnh đại diện sinh viên"></button>
+          <input type="file" id="photoFile" accept="image/*" hidden>
+          <button data-edit="name" class="profile-name" data-value="name"></button>
+          <button id="signout">Đăng<br>xuất</button>
+        </div>
+        <div id="rows" class="card"></div>
+        <div class="measure card" id="measure">
+          <h2>Thông số xác định quân trang</h2>
+          <label>Chiều cao(cm): <input data-input="height" inputmode="decimal"></label>
+          <label>Cân nặng(kg): <input data-input="weight" inputmode="decimal"></label>
+          <label>Chu vi lưng quần(cm) <input data-input="waist" inputmode="decimal"></label>
+          <button id="update">Cập nhật</button>
+        </div>
+      </section>
+      <section id="absence" hidden>
+        <div class="notice"><span class="bang">!</span><div><h2>THÔNG BÁO</h2><p>Không tìm thấy thông tin vắng học</p></div></div>
+      </section>
+      <section id="gate" hidden>
+        <div id="messages"></div>
+        <p class="demo">Bản mô phỏng · Lưu trên thiết bị</p>
+        <button id="create">Tạo đơn</button>
+      </section>
+    </div>
+  </section>
+</main>
+<dialog id="editor"><form id="editorForm">
+  <h2 id="editTitle"></h2>
+  <div id="editFields"></div>
+  <div class="actions"><button type="button" id="cancel">Hủy</button><button class="primary" type="submit">Lưu</button></div>
+</form></dialog>
+<div id="status" role="status" aria-live="polite"></div>
+</body>
+</html>
